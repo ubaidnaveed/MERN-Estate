@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar:{
         type: String,
-        default: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fillustration%2Fdefault-user.html&psig=AOvVaw1xaKMVFDpLSMfoSeVWIa_9&ust=1714051211506000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPDqquL42oUDFQAAAAAdAAAAABAE"
+        default: "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/my-account-icon.png"
     }
 },{timestamps: true});
 

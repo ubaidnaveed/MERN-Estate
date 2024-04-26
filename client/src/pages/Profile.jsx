@@ -1,8 +1,24 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { signoutFailure, signoutStart, signoutSuccess } from '../redux/user/userSlice';
 
 export default function Profile() {
   const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const handleSignOut = async () => {
+    try {
+      dispatch(signoutStart());
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(signoutFailure(data.message));
+        return;
+      }
+      dispatch(signoutSuccess(data));
+    } catch (error) {
+      dispatch(signoutFailure(data.message));
+    }
+  };
   return (
     <div>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -44,7 +60,7 @@ export default function Profile() {
         >
           Delete account
         </span>
-        <span 
+        <span onClick={handleSignOut}
           className='text-red-700 cursor-pointer'>
           Sign out
         </span>
